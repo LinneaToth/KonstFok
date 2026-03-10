@@ -1,5 +1,11 @@
-import { Text } from "react-native";
+import Carousel from "./components/Carousel";
+
+const cards = [
+  { id: "kortEtt", title: "kortEtt" },
+  { id: "kortTvå", title: "kortTvå" },
+  { id: "kortTre", title: "kortTre" },
+];
 
 export default function ImagePicker() {
-  return <Text>I am IMAGE PICKER, with tabs and carousels yay</Text>;
+  return <Carousel cards={cards} />;
 }
