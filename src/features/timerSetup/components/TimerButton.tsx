@@ -23,5 +23,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 30,
+    fontVariant: ["tabular-nums"],
   },
 });

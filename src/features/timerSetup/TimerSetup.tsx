@@ -9,8 +9,7 @@ export default function TimerSetup() {
   return (
     <View style={styles.container}>
       <TimerSlider accent={accent} primary={primary} />
-      {/*add time state and set time state*/}
-      <TimerButton /> {/*add time state*/}
+      <TimerButton />
     </View>
   );
 }
