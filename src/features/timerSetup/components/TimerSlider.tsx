@@ -22,7 +22,7 @@ export default function TimerSlider({ primary, accent }: Props) {
 
 const styles = StyleSheet.create({
   slider: {
-    width: 250,
+    width: 280,
     height: 70,
   },
 });

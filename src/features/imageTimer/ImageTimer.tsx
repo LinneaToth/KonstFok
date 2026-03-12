@@ -1,6 +1,12 @@
 import { ImageBackground, StyleSheet } from "react-native";
 
-export default function ImageTimer({ image }) {
+type Props = {
+  image: {
+    uri: string;
+  };
+};
+
+export default function ImageTimer({ image }: Props) {
   return <ImageBackground source={image} style={styles.image} />;
 }
 

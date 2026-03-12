@@ -7,6 +7,7 @@ const { primary } = colors;
 export default function TimerButton() {
   return (
     <Pressable style={styles.button}>
+      <Text style={styles.buttonText}>START</Text>
       <Text style={styles.buttonText}>00:00:00</Text>
     </Pressable>
   );
@@ -23,6 +24,5 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 30,
-    fontVariant: ["tabular-nums"],
   },
 });
