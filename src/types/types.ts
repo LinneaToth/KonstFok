@@ -27,3 +27,15 @@ export type Artwork = {
   description: string;
   artwork_type_title: string;
 };
+
+export type TimerContextType = {
+  tick: () => void;
+  reset: () => void;
+  setTime: (time: number) => void;
+  setStatus: (status: "WORKING" | "FINISHED" | "ONHOLD" | "READY") => void;
+  setArtwork: (id: number) => void;
+  chosenArtwork: number;
+  status: string;
+  remainingTime: number;
+  goalTime: number;
+};

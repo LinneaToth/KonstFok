@@ -1,27 +1,40 @@
 import { Pressable, Text, StyleSheet } from "react-native";
-
 import { colors } from "../../../constants/colors";
+import { secondsToTime } from "@/utils/timeLogic";
+import Button from "@/ui/Button";
 
 const { primary } = colors;
 
-export default function TimerButton() {
+type Props = {
+  onPress: () => void;
+  goalTime: number;
+  curTime: number;
+  status: "WORKING" | "ONHOLD" | "READY" | "DONE";
+};
+
+export default function TimerButton({
+  onPress,
+  goalTime,
+  curTime,
+  status,
+}: Props) {
+  const goalTimeFormatted = secondsToTime(goalTime);
+  const curTimeFormatted = secondsToTime(curTime);
+
   return (
-    <Pressable style={styles.button}>
-      <Text style={styles.buttonText}>START</Text>
-      <Text style={styles.buttonText}>00:00:00</Text>
-    </Pressable>
+    <Button onPress={onPress}>
+      <Text style={styles.buttonText}>
+        {status === "ONHOLD" && "RESUME"}
+        {status === "READY" && "START"}
+      </Text>
+      <Text style={styles.buttonText}>
+        {status === "READY" ? goalTimeFormatted : curTimeFormatted}
+      </Text>
+    </Button>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    width: 250,
-    height: 100,
-    borderColor: primary,
-    borderWidth: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   buttonText: {
     fontSize: 30,
   },

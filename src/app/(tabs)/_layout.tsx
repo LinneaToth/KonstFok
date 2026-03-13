@@ -6,7 +6,7 @@ import { Tabs } from "expo-router";
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs tabBar={() => null}>
       <Tabs.Screen name="dashboard/index" options={{ headerShown: false }} />
       <Tabs.Screen name="timer/index" options={{ headerShown: false }} />
     </Tabs>

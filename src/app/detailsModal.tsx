@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Artwork } from "@/types/types";
 import { typography } from "@/constants/typography";
 import { removeTags } from "@/features/imagePicker/api/dataUtils";
-import Heading from "@/ui/heading";
+import Heading from "@/ui/Heading";
 import ViewContainer from "@/ui/ViewContainer";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -25,8 +25,6 @@ export default function Modal() {
     getArtwork();
   }, []);
 
-  const artworkDescription = artwork?.description;
-
   //add image and a heart icon for favoriting it
 
   return (
@@ -43,7 +41,7 @@ export default function Modal() {
             <Text style={styles.standard}>
               {!artwork
                 ? "Artwork description - loading"
-                : removeTags(artworkDescription)}
+                : removeTags(artwork.description)}
               {/*The description returned contains <>-tags, tried native webview. It looked awful so I use a method to clean it up with regexp*/}
             </Text>
           </>

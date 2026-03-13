@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     gap: gap,
     padding: padding,
-    marginTop: 0,
+    paddingTop: 50,
     height: "100%",
   },
 });

@@ -4,7 +4,7 @@ import { dimensions } from "../../../constants/dimensions";
 import ImagePicker from "../../../features/imagePicker/ImagePicker";
 import TimerSetup from "../../../features/timerSetup/TimerSetup";
 import ViewContainer from "@/ui/ViewContainer";
-import Heading from "@/ui/heading";
+import Heading from "@/ui/Heading";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const { primary, background } = colors;
