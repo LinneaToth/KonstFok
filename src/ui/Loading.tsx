@@ -1,5 +1,8 @@
-import { Text } from "react-native";
+import { ActivityIndicator } from "react-native";
+import { colors } from "@/constants/colors";
 
 export default function Loading() {
-  return <Text> LOADING </Text>;
+  const { accent } = colors;
+
+  return <ActivityIndicator size="large" color={accent} />;
 }

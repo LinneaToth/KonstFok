@@ -14,17 +14,18 @@ export default function Button({ children, onPress }: Props) {
   );
 }
 
-const { primary, background } = colors;
+const { primary, cardBackground } = colors;
 
 const styles = StyleSheet.create({
   button: {
     width: 250,
-    height: 100,
+    height: 50,
     borderColor: primary,
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: background,
+    backgroundColor: cardBackground,
+    zIndex: 5,
   },
   buttonText: {
     fontSize: 30,

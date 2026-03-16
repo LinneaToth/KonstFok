@@ -1,26 +1,11 @@
 import { useReducer } from "react";
-import { TimerContextType } from "@/types/types";
-
-type TimerState = {
-  status: string;
-  goalTime: number;
-  curTime: number;
-  selectedArtwork: number;
-};
-
-type TimerAction = {
-  type: string;
-  time?: number;
-  status?: string;
-  id?: number;
-};
-
-const initialValues: TimerState = {
-  status: "READY",
-  goalTime: 1500,
-  curTime: 1500,
-  selectedArtwork: 92385,
-};
+import {
+  TimerContextType,
+  TimerState,
+  TimerAction,
+  Artwork,
+} from "@/types/types";
+import { initialValues } from "@/constants/fallbacks";
 
 export const timerReducer = (state: TimerState, action: TimerAction) => {
   switch (action.type) {
@@ -39,7 +24,10 @@ export const timerReducer = (state: TimerState, action: TimerAction) => {
       return { ...state, status: action.status ?? "ONHOLD" };
 
     case "SETARTWORK":
-      return { ...state, selectedArtwork: action.id ?? 92385 };
+      return {
+        ...state,
+        chosenArtwork: action.id ?? initialValues.chosenArtwork,
+      };
 
     default:
       return state;
@@ -63,17 +51,17 @@ export const useTimerReducer = (): TimerContextType => {
     dispatch({ type: "SETSTATUS", status: newStatus });
   };
 
-  const setArtwork = (newArtwork: number) => {
-    dispatch({ type: "SETARTWORK", id: newArtwork });
+  const setArtwork = (id: number) => {
+    dispatch({ type: "SETARTWORK", id: id });
   };
 
   const reset = () => {
     dispatch({ type: "SETTIME", time: initialValues.goalTime });
     dispatch({ type: "SETSTATUS", status: initialValues.status });
-    dispatch({ type: "SETARTWORK", id: initialValues.selectedArtwork });
+    dispatch({ type: "SETARTWORK", id: initialValues.chosenArtwork });
   };
 
-  const chosenArtwork = state.selectedArtwork;
+  const chosenArtwork = state.chosenArtwork;
   const status = state.status;
   const remainingTime = state.curTime;
   const goalTime = state.goalTime;

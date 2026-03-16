@@ -9,7 +9,6 @@ import { typography } from "@/constants/typography";
 import { removeTags } from "@/features/imagePicker/api/dataUtils";
 import Heading from "@/ui/Heading";
 import ViewContainer from "@/ui/ViewContainer";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Modal() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -28,7 +27,7 @@ export default function Modal() {
   //add image and a heart icon for favoriting it
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <ViewContainer>
       <ScrollView style={styles.container}>
         {isLoading && <Loading />}
 
@@ -47,7 +46,7 @@ export default function Modal() {
           </>
         )}
       </ScrollView>
-    </SafeAreaView>
+    </ViewContainer>
   );
 }
 

@@ -31,7 +31,7 @@ export default function TimerSlider({
 
 const styles = StyleSheet.create({
   slider: {
-    width: 280,
+    width: 225,
     height: 70,
   },
 });

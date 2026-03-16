@@ -12,23 +12,12 @@ type Props = {
   status: "WORKING" | "ONHOLD" | "READY" | "DONE";
 };
 
-export default function TimerButton({
-  onPress,
-  goalTime,
-  curTime,
-  status,
-}: Props) {
-  const goalTimeFormatted = secondsToTime(goalTime);
-  const curTimeFormatted = secondsToTime(curTime);
-
+export default function TimerButton({ onPress, status }: Props) {
   return (
     <Button onPress={onPress}>
       <Text style={styles.buttonText}>
         {status === "ONHOLD" && "RESUME"}
         {status === "READY" && "START"}
-      </Text>
-      <Text style={styles.buttonText}>
-        {status === "READY" ? goalTimeFormatted : curTimeFormatted}
       </Text>
     </Button>
   );

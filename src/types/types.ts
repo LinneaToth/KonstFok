@@ -22,8 +22,6 @@ export type Artwork = {
   title: string;
   image_id: string;
   is_public_domain: boolean;
-  iiif_url: string;
-  website_url: string;
   description: string;
   artwork_type_title: string;
 };
@@ -33,9 +31,23 @@ export type TimerContextType = {
   reset: () => void;
   setTime: (time: number) => void;
   setStatus: (status: "WORKING" | "FINISHED" | "ONHOLD" | "READY") => void;
-  setArtwork: (id: number) => void;
+  setArtwork: (artwork: number) => void;
   chosenArtwork: number;
   status: string;
   remainingTime: number;
   goalTime: number;
+};
+
+export type TimerState = {
+  status: string;
+  goalTime: number;
+  curTime: number;
+  chosenArtwork: number;
+};
+
+export type TimerAction = {
+  type: string;
+  time?: number;
+  status?: string;
+  id?: number;
 };

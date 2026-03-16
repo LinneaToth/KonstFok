@@ -1,4 +1,4 @@
-import ViewContainer from "@/ui/ViewContainer";
+import { SafeAreaView } from "react-native-safe-area-context";
 import ImageTimer from "@/features/imageTimer/ImageTimer";
 
 const image = {
@@ -10,8 +10,8 @@ const image = {
 
 export default function Timer() {
   return (
-    <ViewContainer>
-      <ImageTimer image={image} />
-    </ViewContainer>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ImageTimer />
+    </SafeAreaView>
   );
 }
