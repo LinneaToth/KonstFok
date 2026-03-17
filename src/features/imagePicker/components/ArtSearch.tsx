@@ -1,8 +1,7 @@
 import { TextInput, StyleSheet } from "react-native";
-import { useState } from "react";
 
 export default function ArtSearch() {
-  const onChangeText = (text: string) => {};
+  const onChangeText = () => {};
   return <TextInput style={styles.input} onChangeText={onChangeText} />;
 }
 

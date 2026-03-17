@@ -1,33 +1,28 @@
 import { Artwork } from "@/types/types";
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  Pressable,
-  Text,
-} from "react-native";
-import { router } from "expo-router";
+import { View, StyleSheet, ImageBackground, Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { getImgUrl } from "../api/dataUtils";
+import { getImgUrl } from "../../../api/dataUtils";
 import { colors } from "@/constants/colors";
 import Loading from "@/ui/Loading";
 
 type Props = {
   artwork: Artwork;
-  onPress: (id: number) => void;
+  handleSelect: (id: number) => void;
   chosenArtwork: number;
+  handleViewInfo: (infoId: number | string) => void;
 };
 const { primary, accent, backgroundTransparent } = colors;
 
-export default function ArtCard({ artwork, onPress, chosenArtwork }: Props) {
+export default function ArtCard({
+  artwork,
+  handleSelect,
+  chosenArtwork,
+  handleViewInfo,
+}: Props) {
   const { image_id, id, title } = artwork;
   const imgUrl = getImgUrl(image_id);
 
   const isSelected = chosenArtwork === id;
-
-  const handleViewInfo = () => {
-    router.push({ pathname: "/detailsModal", params: { id: id } }); //Router push adds a stack/view on top of everything else, which should be intact underneath. Params will be appended after ?, which tells the routing that this is just data parameters, not actual routing. I can name the keys whatever I want. That is my understanding, based on what I read in the expo routing docs.
-  };
 
   return (
     <ImageBackground
@@ -35,12 +30,14 @@ export default function ArtCard({ artwork, onPress, chosenArtwork }: Props) {
       resizeMode="cover"
       style={styles.img}
       imageStyle={{ opacity: isSelected ? 1 : 0.7 }}>
-      <Pressable onPress={title === "LOADING" ? null : () => onPress(id)}>
+      <Pressable onPress={title === "LOADING" ? null : () => handleSelect(id)}>
         <View style={styles.card}>
           {title === "LOADING" && <Loading />}
           {title !== "LOADING" && (
             <>
-              <Pressable style={styles.infoIcon} onPress={handleViewInfo}>
+              <Pressable
+                style={styles.infoIcon}
+                onPress={() => handleViewInfo(id)}>
                 <Ionicons name="information-sharp" size={30} color={accent} />
               </Pressable>
             </>

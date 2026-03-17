@@ -6,7 +6,7 @@ import ViewContainer from "@/ui/ViewContainer";
 export default function App() {
   return (
     <ViewContainer>
-      <Heading text="konstFok" />
+      <Heading text="konstfok" logo={true} />
       <ImagePicker />
       <TimerSetup />
     </ViewContainer>

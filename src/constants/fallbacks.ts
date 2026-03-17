@@ -1,6 +1,4 @@
-//PLaceholders and dummies. Move 'em here. They're ugly.
-
-import { TimerState, Artwork, TimerContextType } from "@/types/types";
+import { TimerState, TimerContextType } from "@/types/types";
 
 export const initialValues: TimerState = {
   status: "READY",
@@ -19,8 +17,8 @@ export const initContext: TimerContextType = {
   setTime: () => {
     return;
   },
-  setStatus: (status: "WORKING" | "FINISHED" | "ONHOLD" | "READY") => {},
-  setArtwork: (artwork: number) => {},
+  setStatus: () => {},
+  setArtwork: () => {},
   chosenArtwork: 129884,
   status: "READY",
   remainingTime: 1500,
@@ -35,6 +33,7 @@ export const fallBackImg = () => {
     is_public_domain: true,
     description: "fallback img",
     artwork_type_title: "fallback img",
+    artist_title: "TOTH",
   };
 };
 
@@ -46,6 +45,7 @@ export const fallbackCards = [
     is_public_domain: true,
     description: "LOADING",
     artwork_type_title: "Painting",
+    artist_title: "TOTH",
   },
   {
     id: 1,
@@ -54,6 +54,7 @@ export const fallbackCards = [
     is_public_domain: true,
     description: "LOADING",
     artwork_type_title: "Painting",
+    artist_title: "TOTH",
   },
   {
     id: 2,
@@ -62,5 +63,6 @@ export const fallbackCards = [
     is_public_domain: true,
     description: "LOADING",
     artwork_type_title: "Painting",
+    artist_title: "TOTH",
   },
 ];

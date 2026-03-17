@@ -5,9 +5,11 @@ import TimerSlider from "./components/TimerSlider";
 import TimerButton from "./components/TimerButton";
 import { colors } from "../../constants/colors";
 import { timerContext } from "@/context/TimerProvider";
-import { getImgUrl } from "../imagePicker/api/dataUtils";
-import { getArtworkData } from "../imagePicker/api/dataFetcher";
+import { getImgUrl } from "../../api/dataUtils";
+import { getArtworkData } from "../../api/dataFetcher";
 import { secondsToTime } from "@/utils/timeLogic";
+import { useFonts } from "@expo-google-fonts/gudea/useFonts";
+import { GoogleSansCode_300Light } from "@expo-google-fonts/google-sans-code/300Light";
 
 export default function TimerSetup() {
   const { chosenArtwork, setTime, remainingTime, goalTime, status, setStatus } =
@@ -15,6 +17,9 @@ export default function TimerSetup() {
   const router = useRouter();
   const { accent, primary } = colors;
   const [imgUrl, setImgUrl] = useState<string | null>(null);
+  const [fontsLoaded] = useFonts({
+    GoogleSansCode_300Light,
+  });
 
   const goalTimeFormatted = secondsToTime(goalTime);
   const curTimeFormatted = secondsToTime(remainingTime);
@@ -60,7 +65,10 @@ export default function TimerSetup() {
       {imgUrl && (
         <Image style={styles.img} source={{ uri: imgUrl }} resizeMode="cover" />
       )}
-      <Text>{status === "READY" ? goalTimeFormatted : curTimeFormatted}</Text>
+      {!imgUrl && <View style={styles.img} />}
+      <Text style={[styles.timer, fontsLoaded && styles.fontLoadedTimer]}>
+        {status === "READY" ? goalTimeFormatted : curTimeFormatted}
+      </Text>
       <TimerSlider
         accent={accent}
         primary={primary}
@@ -68,8 +76,6 @@ export default function TimerSetup() {
         value={goalTime}
       />
       <TimerButton
-        goalTime={goalTime}
-        curTime={remainingTime}
         status={statusRef.current as "READY" | "WORKING" | "ONHOLD" | "DONE"}
         onPress={handleTimerBtnPress}
       />
@@ -77,7 +83,7 @@ export default function TimerSetup() {
   );
 }
 
-const { cardBackground, accent } = colors;
+const { cardBackground, accent, backgroundTransparent } = colors;
 
 const styles = StyleSheet.create({
   container: {
@@ -94,5 +100,15 @@ const styles = StyleSheet.create({
     height: 250,
     borderColor: accent,
     borderWidth: 1,
+  },
+  timer: {
+    marginTop: -75,
+    backgroundColor: backgroundTransparent,
+    fontSize: 20,
+    width: 250,
+    textAlign: "center",
+  },
+  fontLoadedTimer: {
+    fontFamily: "GoogleSansCode_300Light",
   },
 });

@@ -9,9 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/google-sans-code": "^0.4.2",
+    "@expo-google-fonts/gudea": "^0.4.1",
     "@react-native-community/slider": "^5.1.2",
     "expo": "~55.0.5",
     "expo-constants": "~55.0.7",
+    "expo-font": "~55.0.4",
     "expo-linking": "~55.0.7",
     "expo-router": "~55.0.4",
     "expo-status-bar": "~55.0.4",

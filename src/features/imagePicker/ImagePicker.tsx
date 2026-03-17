@@ -1,9 +1,9 @@
-import { getRandomImgByCategories } from "./api/dataUtils";
+import { getRandomImgByCategories } from "../../api/dataUtils";
 import Carousel from "./components/Carousel";
 import ArtSearch from "./components/ArtSearch";
 import Tabs from "./components/Tabs";
 import { View, StyleSheet } from "react-native";
-import { useEffect, useState, useContext, use } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Artwork } from "@/types/types";
 import { categories } from "@/constants/settings";
 import { fallbackCards } from "@/constants/fallbacks";
@@ -16,13 +16,7 @@ export default function ImagePicker() {
   //Cards for the random tab
   const [categoryRand, setCategoryRand] = useState(fallbackCards);
 
-  //Cards for the random tab
-  const [searchCards, setSearchCards] = useState(null);
-
-  //Search input
-  const [searchInput, setSearchInput] = useState("");
-
-  const [search, setSearch] = useState(false);
+  const [search, _] = useState(false);
 
   useEffect(() => {
     const populateCards = async (cat: string[]) => {
@@ -30,7 +24,7 @@ export default function ImagePicker() {
         await getRandomImgByCategories(cat);
 
       setCategoryRand(
-        categorizedCards.filter((card): card is Artwork => card !== undefined),
+        categorizedCards.filter((card): card is Artwork => card !== undefined), //Type predicate. If function returns true, the >>card is Artwork<< part tells TS that it can safely assume that anything returned by the filter is an artwork
       );
     };
     populateCards(categories);
@@ -55,5 +49,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     height: 200,
+    gap: gap * 2,
   },
 });

@@ -4,17 +4,22 @@ import { timerContext } from "@/context/TimerProvider";
 import { useContext, useCallback, useRef, useState, useEffect } from "react";
 import { secondsToTime } from "@/utils/timeLogic";
 import Button from "@/ui/Button";
-import { getImgUrl } from "../imagePicker/api/dataUtils";
+import { getImgUrl } from "../../api/dataUtils";
 import { colors } from "@/constants/colors";
-import { getArtworkData } from "../imagePicker/api/dataFetcher";
+import { dimensions } from "@/constants/dimensions";
+import { getArtworkData } from "../../api/dataFetcher";
 import Loading from "@/ui/Loading";
-
+import { useFonts } from "@expo-google-fonts/gudea/useFonts";
+import { GoogleSansCode_300Light } from "@expo-google-fonts/google-sans-code/300Light";
 export default function ImageTimer() {
   const { remainingTime, goalTime, status, setStatus, tick, chosenArtwork } =
     useContext(timerContext);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const router = useRouter();
   const coverHeight = (remainingTime / goalTime) * 100;
+  const [fontsLoaded] = useFonts({
+    GoogleSansCode_300Light,
+  });
 
   useEffect(() => {
     const getArtwork = async () => {
@@ -38,7 +43,8 @@ export default function ImageTimer() {
   useFocusEffect(
     useCallback(() => {
       const countDownInterval = setInterval(() => {
-        if (statusRef.current === "WORKING") tickRef.current();
+        if (statusRef.current === "WORKING")
+          tickRef.current(); //function tick() is stored in the current-object
         else {
           clearInterval(countDownInterval);
           setStatus("FINISHED");
@@ -52,35 +58,38 @@ export default function ImageTimer() {
     }, []),
   );
 
-  const handleSettingsBtnPress = () => {
+  const handleBackBtnPress = () => {
     setStatus("ONHOLD");
     router.navigate("/");
   };
 
   if (!imageUrl) {
     return (
-      <>
-        <Loading />{" "}
-        <Button onPress={handleSettingsBtnPress}>
-          <Text style={styles.buttonText}>GO BACK</Text>
+      <View style={styles.box}>
+        <Loading />
+        <Button onPress={handleBackBtnPress} type="small">
+          GO BACK
         </Button>
-      </>
+      </View>
     );
   }
 
   return (
     <ImageBackground source={{ uri: imageUrl }} style={styles.image}>
       <View style={[styles.cover, { height: `${coverHeight}%` }]}></View>
-      <Text style={styles.timeText}>
-        Remaining time: {secondsToTime(remainingTime)}
-      </Text>
-      <Button onPress={handleSettingsBtnPress}>
-        <Text style={styles.buttonText}>GO BACK</Text>
-      </Button>
+      <View style={styles.box}>
+        <Text style={[styles.timeText, fontsLoaded && styles.fontLoaded]}>
+          {secondsToTime(remainingTime)}
+        </Text>
+        <Button onPress={handleBackBtnPress} type="small">
+          go back
+        </Button>
+      </View>
     </ImageBackground>
   );
 }
-const { backgroundTransparent } = colors;
+const { backgroundTransparent, primary } = colors;
+const { padding } = dimensions;
 
 const styles = StyleSheet.create({
   image: {
@@ -89,14 +98,16 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
-  buttonText: {
-    fontSize: 30,
-  },
   timeText: {
-    fontSize: 50,
-    color: "white",
+    fontSize: 20,
+    color: primary,
     textAlign: "center",
     zIndex: 5,
+    width: "50%",
+    textAlignVertical: "center",
+  },
+  fontLoaded: {
+    fontFamily: "GoogleSansCode_300Light",
   },
   cover: {
     zIndex: 3,
@@ -105,5 +116,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     width: "100%",
+  },
+  box: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 300,
+    backgroundColor: backgroundTransparent,
+    padding: padding,
+    alignSelf: "center",
   },
 });

@@ -1,13 +1,11 @@
 import { useReducer } from "react";
-import {
-  TimerContextType,
-  TimerState,
-  TimerAction,
-  Artwork,
-} from "@/types/types";
+import { TimerContextType, TimerState, TimerAction } from "@/types/types";
 import { initialValues } from "@/constants/fallbacks";
 
-export const timerReducer = (state: TimerState, action: TimerAction) => {
+export const timerReducer = (
+  state: TimerState,
+  action: TimerAction,
+): TimerState => {
   switch (action.type) {
     case "TICK":
       if (state.curTime === 0) return { ...state, status: "FINISHED" };
@@ -46,7 +44,7 @@ export const useTimerReducer = (): TimerContextType => {
   };
 
   const setStatus = (
-    newStatus: "FINISHED" | "WORKING" | "ONHOLD" | "READY" | "DONE",
+    newStatus: "FINISHED" | "WORKING" | "ONHOLD" | "READY",
   ) => {
     dispatch({ type: "SETSTATUS", status: newStatus });
   };

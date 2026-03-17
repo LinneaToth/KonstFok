@@ -2,63 +2,72 @@ import { StyleSheet, Text, ScrollView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import Loading from "@/ui/Loading";
 
-import { getArtworkData } from "@/features/imagePicker/api/dataFetcher";
+import { getArtworkData } from "@/api/dataFetcher";
 import { useEffect, useState } from "react";
 import { Artwork } from "@/types/types";
 import { typography } from "@/constants/typography";
-import { removeTags } from "@/features/imagePicker/api/dataUtils";
+import { removeTags } from "@/api/dataUtils";
 import Heading from "@/ui/Heading";
 import ViewContainer from "@/ui/ViewContainer";
+import { colors } from "@/constants/colors";
+import { dimensions } from "@/constants/dimensions";
 
 export default function Modal() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const [artwork, setArtwork] = useState<null | Artwork>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getArtwork = async () => {
       const fetchedArtwork = await getArtworkData(Number(id));
       setArtwork(fetchedArtwork[0]);
-      setIsLoading(false);
     };
     getArtwork();
-  }, []);
+  }, [id]);
 
-  //add image and a heart icon for favoriting it
+  if (!artwork)
+    return (
+      <ViewContainer>
+        <Loading />
+      </ViewContainer>
+    );
+
+  const description = artwork.description
+    ? artwork.description
+    : "No description available";
+
+  const artist = artwork.artist_title
+    ? artwork.artist_title
+    : "No information available";
 
   return (
     <ViewContainer>
       <ScrollView style={styles.container}>
-        {isLoading && <Loading />}
-
-        {!isLoading && (
-          <>
-            <Heading
-              text={!artwork ? "Artwork title - loading" : artwork.title}
-            />
-
-            <Text style={styles.standard}>
-              {!artwork
-                ? "Artwork description - loading"
-                : removeTags(artwork.description)}
-              {/*The description returned contains <>-tags, tried native webview. It looked awful so I use a method to clean it up with regexp*/}
-            </Text>
-          </>
-        )}
+        <Heading text={artwork.title} />
+        <Text style={styles.standard}>Artist: {artist}</Text>
+        <Text style={styles.standard}>
+          {removeTags(description)}
+          {/*The description returned contains <>-tags, tried native webview. It looked awful so I use a method to clean it up with regexp*/}
+        </Text>
       </ScrollView>
     </ViewContainer>
   );
 }
 
-const { headingSize, standardSize } = typography;
+const { standardSize } = typography;
+const { cardBackground } = colors;
+const { padding, width, gap } = dimensions;
 
 const styles = StyleSheet.create({
   container: {
     height: 400,
   },
-
   standard: {
     fontSize: standardSize,
     lineHeight: standardSize * 1.5,
+    backgroundColor: cardBackground,
+    padding: padding,
+    width: width,
+    alignSelf: "center",
+    marginTop: gap,
   },
 });

@@ -1,27 +1,42 @@
-import { colors } from "@/constants/colors";
-import { dimensions } from "@/constants/dimensions";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import Button from "@/ui/Button";
 
 export default function Tabs() {
   return (
     <View style={styles.container}>
-      <Text>RANDOM</Text>
-      <Text>SEARCH</Text>
+      <Button
+        type="small"
+        onPress={() => {
+          return;
+        }}>
+        random
+      </Button>
+      <Button
+        disabled={true}
+        type="small"
+        onPress={() => {
+          return;
+        }}>
+        search
+      </Button>
+      <Button
+        disabled={true}
+        type="small"
+        onPress={() => {
+          return;
+        }}>
+        favorites
+      </Button>
     </View>
   );
 }
-
-const { cardBackground } = colors;
-const { gap } = dimensions;
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: 20,
+    height: 30,
     width: 300,
-    paddingHorizontal: 30,
-    backgroundColor: cardBackground,
   },
 });
