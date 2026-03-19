@@ -8,13 +8,13 @@ Project made during my third semester of two year higher vocational education in
 
 #### Browse Artwork
 
-- Fetches random paintings from the Art Institute of Chicago API on load, grouped by category
+- Fetches random paintings from the Art Institute of Chicago API on load
 - Swipe through results in a carousel
 
 #### Search Artwork
 
 - Search for paintings by keyword via the API
-- Results are filtered to only show paintings
+- Results are filtered to only show paintings & open source artworks
 
 #### Select a Painting
 
@@ -28,9 +28,7 @@ Project made during my third semester of two year higher vocational education in
 
 #### Artwork Details
 
-- Tap a painting to open a detail view with title, artist, and description
-
----
+- Tap a painting to open a details view with title, artist, and description
 
 ### Stack
 
