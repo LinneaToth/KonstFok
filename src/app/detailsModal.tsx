@@ -15,15 +15,28 @@ import { dimensions } from "@/constants/dimensions";
 export default function Modal() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const [artwork, setArtwork] = useState<null | Artwork>(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const getArtwork = async () => {
+      setError(false);
       const fetchedArtwork = await getArtworkData(Number(id));
-      setArtwork(fetchedArtwork[0]);
+      if (fetchedArtwork && fetchedArtwork.length > 0) {
+        setArtwork(fetchedArtwork[0]);
+      } else {
+        setError(true);
+      }
     };
     getArtwork();
   }, [id]);
 
+  if (error) {
+    return (
+      <ViewContainer>
+        <Text style={styles.standard}>Failed to load artwork details</Text>
+      </ViewContainer>
+    );
+  }
   if (!artwork)
     return (
       <ViewContainer>

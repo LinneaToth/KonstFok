@@ -1,6 +1,3 @@
-//Component created to avoid repeating the same code for styling in different places of the app
-//There is a library for dealing with safe areas, https://appandflow.github.io/react-native-safe-area-context/, I just did it with margins here
-
 import { StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
 import { dimensions } from "@/constants/dimensions";

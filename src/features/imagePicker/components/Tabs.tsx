@@ -1,32 +1,26 @@
 import { StyleSheet, View } from "react-native";
 import Button from "@/ui/Button";
+import { TabTypes } from "@/types/types";
 
-export default function Tabs() {
+type Props = {
+  activeTab: "random" | "search" | "favorites";
+  onPress: (tab: TabTypes) => void;
+};
+
+export default function Tabs({ activeTab, onPress }: Props) {
+  const tabs: TabTypes[] = ["random", "search", "favorites"];
+
   return (
     <View style={styles.container}>
-      <Button
-        type="small"
-        onPress={() => {
-          return;
-        }}>
-        random
-      </Button>
-      <Button
-        disabled={true}
-        type="small"
-        onPress={() => {
-          return;
-        }}>
-        search
-      </Button>
-      <Button
-        disabled={true}
-        type="small"
-        onPress={() => {
-          return;
-        }}>
-        favorites
-      </Button>
+      {tabs.map((tab) => (
+        <Button
+          key={tab}
+          type="small"
+          onPress={() => onPress(tab)}
+          active={tab === activeTab}>
+          {tab}
+        </Button>
+      ))}
     </View>
   );
 }

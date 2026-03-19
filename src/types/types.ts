@@ -36,7 +36,7 @@ export type TimerContextType = {
   setStatus: (status: Status) => void;
   setArtwork: (artwork: number) => void;
   chosenArtwork: number;
-  status: string;
+  status: Status;
   remainingTime: number;
   goalTime: number;
 };
@@ -56,3 +56,5 @@ export type TimerAction = {
 };
 
 export type Status = "WORKING" | "FINISHED" | "ONHOLD" | "READY";
+
+export type TabTypes = "random" | "search" | "favorites";

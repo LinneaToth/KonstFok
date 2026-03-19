@@ -1,8 +1,9 @@
 import Button from "@/ui/Button";
+import { Status } from "@/types/types";
 
 type Props = {
   onPress: () => void;
-  status: "WORKING" | "ONHOLD" | "READY" | "DONE";
+  status: Status;
 };
 
 export default function TimerButton({ onPress, status }: Props) {

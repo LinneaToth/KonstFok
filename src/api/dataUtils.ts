@@ -6,7 +6,7 @@ export function getImgUrl(imgId: string) {
   return `https://www.artic.edu/iiif/2/${imgId}/full/843,/0/default.jpg`;
 }
 
-export async function getRandomImgByCategories(categories: string[]) {
+export const getRandomImgByCategories = async (categories: string[]) => {
   const randomImgArr = categories.map(async (category) => {
     let randomImg = undefined;
     let amtTries = 0;
@@ -29,7 +29,13 @@ export async function getRandomImgByCategories(categories: string[]) {
     return fallBackImg();
   });
   return await Promise.all(randomImgArr);
-}
+};
+
+export const getOnlyPaintings = (artworks: Artwork[]) => {
+  return artworks.filter(
+    (artwork) => artwork.artwork_type_title === "Painting",
+  );
+};
 
 export const removeTags = (str: string) => {
   if (!str) return "";

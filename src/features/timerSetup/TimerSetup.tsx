@@ -1,40 +1,28 @@
-import { useContext, useCallback, useRef, useState, useEffect } from "react";
+import { useContext, useCallback, useRef, useState } from "react";
 import { useRouter, useFocusEffect } from "expo-router";
 import { StyleSheet, View, Image, Text } from "react-native";
+
+import { timerContext } from "@/context/TimerProvider";
+import { Status } from "@/types/types";
+import { colors } from "../../constants/colors";
 import TimerSlider from "./components/TimerSlider";
 import TimerButton from "./components/TimerButton";
-import { colors } from "../../constants/colors";
-import { timerContext } from "@/context/TimerProvider";
-import { getImgUrl } from "../../api/dataUtils";
-import { getArtworkData } from "../../api/dataFetcher";
+import Loading from "@/ui/Loading";
 import { secondsToTime } from "@/utils/timeLogic";
-import { useFonts } from "@expo-google-fonts/gudea/useFonts";
-import { GoogleSansCode_300Light } from "@expo-google-fonts/google-sans-code/300Light";
+import { useArtworkImageUrl } from "@/api/dataHooks";
 
 export default function TimerSetup() {
   const { chosenArtwork, setTime, remainingTime, goalTime, status, setStatus } =
     useContext(timerContext);
   const router = useRouter();
   const { accent, primary } = colors;
-  const [imgUrl, setImgUrl] = useState<string | null>(null);
-  const [fontsLoaded] = useFonts({
-    GoogleSansCode_300Light,
-  });
+
+  const [error, setError] = useState(false);
+  //useEffect replaced with custom hook:
+  const imgUrl = useArtworkImageUrl(chosenArtwork, setError);
 
   const goalTimeFormatted = secondsToTime(goalTime);
   const curTimeFormatted = secondsToTime(remainingTime);
-
-  useEffect(() => {
-    const getArtwork = async () => {
-      if (chosenArtwork) {
-        const [fetchedArtwork] = await getArtworkData(chosenArtwork);
-        if (fetchedArtwork?.image_id) {
-          setImgUrl(getImgUrl(fetchedArtwork.image_id));
-        }
-      }
-    };
-    getArtwork();
-  }, [chosenArtwork]);
 
   //Only way to use status as a reference in the useFocusEffect was to circumvent it with a useRef, otherwise status would go stale inside the useCallback closure and not update. The difference with statusRef.current is that it points towards an object (in which the content can be changed), which persists between renders. I put derived state into it. Thanks, React.
   const statusRef = useRef(status);
@@ -62,11 +50,22 @@ export default function TimerSetup() {
 
   return (
     <View style={styles.container}>
-      {imgUrl && (
+      {!error && imgUrl && (
         <Image style={styles.img} source={{ uri: imgUrl }} resizeMode="cover" />
       )}
-      {!imgUrl && <View style={styles.img} />}
-      <Text style={[styles.timer, fontsLoaded && styles.fontLoadedTimer]}>
+      {!imgUrl && (
+        <View style={styles.img}>
+          <Loading />
+        </View>
+      )}
+
+      {error && (
+        <View style={styles.img}>
+          <Text>no image was retrieved</Text>
+        </View>
+      )}
+
+      <Text style={styles.timer}>
         {status === "READY" ? goalTimeFormatted : curTimeFormatted}
       </Text>
       <TimerSlider
@@ -76,7 +75,7 @@ export default function TimerSetup() {
         value={goalTime}
       />
       <TimerButton
-        status={statusRef.current as "READY" | "WORKING" | "ONHOLD" | "DONE"}
+        status={statusRef.current as Status}
         onPress={handleTimerBtnPress}
       />
     </View>
@@ -100,6 +99,8 @@ const styles = StyleSheet.create({
     height: 250,
     borderColor: accent,
     borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   timer: {
     marginTop: -75,
@@ -107,8 +108,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     width: 250,
     textAlign: "center",
-  },
-  fontLoadedTimer: {
     fontFamily: "GoogleSansCode_300Light",
   },
 });

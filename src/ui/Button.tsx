@@ -1,39 +1,28 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import { colors } from "@/constants/colors";
-import { useFonts } from "@expo-google-fonts/gudea/useFonts";
-import { Gudea_400Regular } from "@expo-google-fonts/gudea";
 
 type Props = {
   children: React.ReactNode;
   onPress: () => void;
   type?: "big" | "small";
-  disabled?: boolean;
+  active?: boolean;
 };
 
 export default function Button({
   children,
   onPress,
   type = "big",
-  disabled = false,
+  active = true,
 }: Props) {
-  const [fontsLoaded] = useFonts({
-    Gudea_400Regular,
-  });
-
   return (
     <Pressable
       style={[
         styles.button,
         type === "small" && { height: 30, width: 95 },
-        disabled === true && { opacity: 0.5 },
+        active === false && { opacity: 0.5 },
       ]}
       onPress={onPress}>
-      <Text
-        style={[
-          styles.buttonText,
-          fontsLoaded && styles.fontLoaded,
-          type === "big" && { fontSize: 25 },
-        ]}>
+      <Text style={[styles.buttonText, type === "big" && { fontSize: 25 }]}>
         {children}
       </Text>
     </Pressable>
@@ -55,8 +44,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 15,
-  },
-  fontLoaded: {
     fontFamily: "Gudea_400Regular",
   },
 });

@@ -1,8 +1,6 @@
 import { StyleSheet, Text, Image, View } from "react-native";
 import { typography } from "@/constants/typography";
 import { colors } from "@/constants/colors";
-import { useFonts } from "@expo-google-fonts/gudea/useFonts";
-import { Gudea_400Regular } from "@expo-google-fonts/gudea";
 
 type Props = {
   text: string;
@@ -10,10 +8,6 @@ type Props = {
 };
 
 export default function Heading({ text, logo = false }: Props) {
-  const [fontsLoaded] = useFonts({
-    Gudea_400Regular,
-  });
-
   return (
     <View style={styles.container}>
       {logo && (
@@ -22,9 +16,7 @@ export default function Heading({ text, logo = false }: Props) {
           style={styles.img}
         />
       )}
-      <Text style={[styles.heading, fontsLoaded && styles.fontLoaded]}>
-        {text}
-      </Text>
+      <Text style={styles.heading}>{text}</Text>
     </View>
   );
 }
@@ -35,8 +27,6 @@ const { headingSize } = typography;
 const styles = StyleSheet.create({
   heading: {
     fontSize: headingSize,
-  },
-  fontLoaded: {
     fontFamily: "Gudea_400Regular",
   },
   container: {
