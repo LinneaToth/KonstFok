@@ -15,7 +15,7 @@ Project made during my third semester of two year higher vocational education in
 #### Select a Painting
 - Pick a painting from the carousel to use as your timer reference image
 
-#### Drawing Timer
+#### Drawing Timer: 
 - Set a timer duration with a slider
 - Full-screen view of the selected painting while the timer counts down
 - A cover gradually reveals the painting as time passes
@@ -24,9 +24,9 @@ Project made during my third semester of two year higher vocational education in
 - Tap a painting to open a details view with title, artist, and description
 
 ### Further Development
-#### Backlog
+#### Backlog - On further development, I will look into: 
 **Features**
-- Favorites — save and revisit favourite paintings
+- Favorites: Save and revisit favourite paintings
 - Play a sound when the timer runs out
 - Refresh random images when tapping the "random" tab again
 
