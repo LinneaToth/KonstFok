@@ -57,8 +57,6 @@ Project made during my third semester of two year higher vocational education in
 - Caching — avoid re-fetching data that has already been loaded
 - Context - split into two — one for dispatch and one for state or consider `useMemo`
 
----
-
 ### Stack
 
 #### Core
@@ -81,6 +79,8 @@ Project made during my third semester of two year higher vocational education in
 #### AI
 
 The purpose of this course was to further enhance my programming skills and to secure understanding on the topic. Therefore, the code is written manually. Claude and Gemini have been employed as tutors, for feedback on the code and for pedagogical explainations on new topics.
+
+## Main takeaways
 
 > # Assignment - Machine translated from Swedish
 >
