@@ -1,7 +1,7 @@
-# React Native - Konstfok
+# React Native - konstfok
 
 ## Final assignment in app development course
-Project made during my third semester of two year higher vocational education in frontend / web development.
+Project made during my third semester of two year higher vocational education in frontend / web development. Think of the app as a happy marriage between an art gallery visit and a pomodoro timer! 
 
 ### Features
 #### Browse Artwork
@@ -23,8 +23,17 @@ Project made during my third semester of two year higher vocational education in
 #### Artwork Details
 - Tap a painting to open a details view with title, artist, and description
 
+### Main takeaways
+I the beginning of this course I had a minor epiphany when I made my phone render a view for the first time. I am deeply fascinated with the unlocked opportunities that knowledge with React brings. I would love to finish this app, and have a go at publishing it on Play Store. I think I've found a new interest, that has got to count as a main takeaway! 
+
+During the project, I was challenged with structuring my files and folders by feature. In hindsight, that feels like a competence long overdue. That will stick with me, for sure.
+
+I have learned a deal about component lifecycles in React Native, and have picked up useful patterns to work around its particular quirks in certain cases. 
+
+The project further cemented my skills in TypeScript and global state management with useReducer and useContext. My confidence in creating custom hooks was further elevated. 
+
 ### Further Development
-#### Backlog - On further development, I will look into: 
+#### Backlog. On further development, I will look into: 
 **Features**
 - Favorites: Save and revisit favourite paintings
 - Play a sound when the timer runs out
@@ -33,7 +42,7 @@ Project made during my third semester of two year higher vocational education in
 **UI**
 - Improve the header and CTA button
 - Restore the tab bar, with a new tab for app info and data/image sources
-- Improve regexp filtering of descriptions — add line breaks and format the text nicely
+- Improve regexp filtering of descriptions; add line breaks and format the text nicely
 
 **Search & Browse**
 - Feedback when a search returns no results
@@ -41,29 +50,27 @@ Project made during my third semester of two year higher vocational education in
 - Reset FlatList scroll position on new search
 
 **Performance**
-- Caching — avoid re-fetching data that has already been loaded
-- Context - split into two — one for dispatch and one for state or consider `useMemo`
+- Caching: avoid re-fetching data that has already been loaded
+- Context: split into two: One for dispatch and one for state, or consider `useMemo`
 
 ### Stack
 
 #### Core
-- **React** — UI library
-- **React Native** — cross-platform mobile framework
-- **Expo** — toolchain and build system
-- **Expo Router** — file-based navigation
-- **TypeScript** — static typing
+- **React**: UI library
+- **React Native**: cross-platform mobile framework
+- **Expo**: toolchain and build system
+- **Expo Router**: file-based navigation
+- **TypeScript**: static typing
 
 #### Data
-- **Art Institute of Chicago API** — artwork data source
+- **Art Institute of Chicago API**: artwork data source
 
 #### Other UI Libraries
-- **React Native Slider** — slider for setting timer duration input
-- **Expo Google Fonts** (Gudea, Google Sans Code) — custom typography
+- **React Native Slider**: slider for setting timer duration input
+- **Expo Google Fonts** (Gudea, Google Sans Code): custom typography
 
 #### AI
 The purpose of this course was to further enhance my programming skills and to secure understanding on the topic. Therefore, the code is written manually. Claude and Gemini have been employed as tutors, for feedback on the code and for pedagogical explainations on new topics.
-
-## Main takeaways
 
 > # Assignment - Machine translated from Swedish
 >
