@@ -30,6 +30,35 @@ Project made during my third semester of two year higher vocational education in
 
 - Tap a painting to open a details view with title, artist, and description
 
+### Further Development
+
+#### Backlog
+
+**Features**
+
+- Favorites — save and revisit favourite paintings
+- Play a sound when the timer runs out
+- Refresh random images when tapping the "random" tab again
+
+**UI**
+
+- Improve the header and CTA button
+- Restore the tab bar, with a new tab for app info and data/image sources
+- Improve regexp filtering of descriptions — add line breaks and format the text nicely
+
+**Search & Browse**
+
+- Feedback when a search returns no results
+- Ensure no duplicates appear in the carousel
+- Reset FlatList scroll position on new search
+
+**Performance**
+
+- Caching — avoid re-fetching data that has already been loaded
+- Context - split into two — one for dispatch and one for state or consider `useMemo`
+
+---
+
 ### Stack
 
 #### Core

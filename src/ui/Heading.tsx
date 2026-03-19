@@ -21,13 +21,14 @@ export default function Heading({ text, logo = false }: Props) {
   );
 }
 
-const { cardBackground } = colors;
+const { cardBackground, accent } = colors;
 const { headingSize } = typography;
 
 const styles = StyleSheet.create({
   heading: {
     fontSize: headingSize,
     fontFamily: "Gudea_400Regular",
+    color: accent,
   },
   container: {
     flexDirection: "row",
