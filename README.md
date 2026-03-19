@@ -1,68 +1,52 @@
 # React Native - Konstfok
 
 ## Final assignment in app development course
-
 Project made during my third semester of two year higher vocational education in frontend / web development.
 
 ### Features
-
 #### Browse Artwork
-
 - Fetches random paintings from the Art Institute of Chicago API on load
 - Swipe through results in a carousel
 
 #### Search Artwork
-
 - Search for paintings by keyword via the API
 - Results are filtered to only show paintings & open source artworks
 
 #### Select a Painting
-
 - Pick a painting from the carousel to use as your timer reference image
 
 #### Drawing Timer
-
 - Set a timer duration with a slider
 - Full-screen view of the selected painting while the timer counts down
 - A cover gradually reveals the painting as time passes
 
 #### Artwork Details
-
 - Tap a painting to open a details view with title, artist, and description
 
 ### Further Development
-
 #### Backlog
-
 **Features**
-
 - Favorites — save and revisit favourite paintings
 - Play a sound when the timer runs out
 - Refresh random images when tapping the "random" tab again
 
 **UI**
-
 - Improve the header and CTA button
 - Restore the tab bar, with a new tab for app info and data/image sources
 - Improve regexp filtering of descriptions — add line breaks and format the text nicely
 
 **Search & Browse**
-
 - Feedback when a search returns no results
 - Ensure no duplicates appear in the carousel
 - Reset FlatList scroll position on new search
 
 **Performance**
-
 - Caching — avoid re-fetching data that has already been loaded
 - Context - split into two — one for dispatch and one for state or consider `useMemo`
-
----
 
 ### Stack
 
 #### Core
-
 - **React** — UI library
 - **React Native** — cross-platform mobile framework
 - **Expo** — toolchain and build system
@@ -70,16 +54,13 @@ Project made during my third semester of two year higher vocational education in
 - **TypeScript** — static typing
 
 #### Data
-
 - **Art Institute of Chicago API** — artwork data source
 
 #### Other UI Libraries
-
 - **React Native Slider** — slider for setting timer duration input
 - **Expo Google Fonts** (Gudea, Google Sans Code) — custom typography
 
 #### AI
-
 The purpose of this course was to further enhance my programming skills and to secure understanding on the topic. Therefore, the code is written manually. Claude and Gemini have been employed as tutors, for feedback on the code and for pedagogical explainations on new topics.
 
 > # Assignment - Machine translated from Swedish
