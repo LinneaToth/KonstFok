@@ -3,7 +3,7 @@
 !["Preview, konstfok UI on phone"](https://raw.githubusercontent.com/LinneaToth/KonstFok/refs/heads/main/assets/img/preview.png)
 
 ## Final assignment in app development course
-Project made during my third semester of two year higher vocational education in frontend / web development. Think of the app as a happy marriage between an art gallery visit and a pomodoro timer! 
+Project with a deadline within 1.5 weeks, made during my third semester of two year higher vocational education in frontend / web development. Think of the app as a happy marriage between an art gallery visit and a pomodoro timer! 
 
 ### Features
 #### Browse Artwork
